@@ -8,6 +8,9 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 @Entity
 @Table(name="tblorderitem")
 public class OrderItem {
@@ -17,6 +20,7 @@ public class OrderItem {
 	private Integer orderId;
 	private String itemName;
 	private Integer quantity;
+	
 	@JoinColumn(name="orderId",insertable=false,updatable=false)
 	@ManyToOne
 	private Order order;
@@ -85,7 +89,7 @@ public class OrderItem {
 		this.quantity = quantity;
 	}
 
-
+	@JsonBackReference
 	public Order getOrder() {
 		return order;
 	}

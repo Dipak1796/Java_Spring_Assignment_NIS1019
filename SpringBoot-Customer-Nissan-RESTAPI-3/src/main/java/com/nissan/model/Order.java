@@ -1,13 +1,20 @@
 package com.nissan.model;
 
 import java.time.LocalDate;
+import java.util.List;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 @Entity
 @Table(name="tblorder")
@@ -20,6 +27,10 @@ public class Order {
 	@JoinColumn(name="custNo",insertable=false,updatable=false)
 	@ManyToOne
 	private Customer customer;
+	
+	@OneToMany(mappedBy="order",cascade=CascadeType.ALL)
+	private List<OrderItem> items;
+
 	
 	
 	public Order() {
@@ -74,6 +85,7 @@ public class Order {
 	}
 
 
+	@JsonBackReference
 	public Customer getCustomer() {
 		return customer;
 	}
@@ -81,6 +93,16 @@ public class Order {
 
 	public void setCustomer(Customer customer) {
 		this.customer = customer;
+	}
+	
+	@JsonManagedReference
+	public List<OrderItem> getItems() {
+		return items;
+	}
+
+
+	public void setItems(List<OrderItem> items) {
+		this.items = items;
 	}
 
 

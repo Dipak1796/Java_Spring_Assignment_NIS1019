@@ -14,4 +14,10 @@ public interface ICustomerService {
 	
 	//Customer save
 	public Customer addCustomer(Customer customer);
+	
+	//update customer
+	public Customer updateCustomer(Customer customer);
+	
+	//delete customer
+	public void deleteCustomer(Integer _custNo);
 }

@@ -34,4 +34,17 @@ public class CustomerService implements ICustomerService {
 		return customerdao.save(customer);
 	}
 
+	@Override
+	public Customer updateCustomer(Customer customer) {
+		return customerdao.save(customer);
+	}
+
+	@Override
+	public void deleteCustomer(Integer _custNo) {
+		customerdao.deleteById(_custNo);
+		
+	}
+	
+	
+
 }
